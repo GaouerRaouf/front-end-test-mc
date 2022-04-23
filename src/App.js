@@ -6,6 +6,7 @@ function App() {
   const [data, setData] = useState([]);
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({ firstName: "", lastName: "", email: "" });
+  
   const [wrongPassword, setWrongPassword] = useState(false);
   useEffect(() => {
     fetch("https://www.mecallapi.com/api/users")
@@ -26,9 +27,7 @@ function App() {
     }
     if (logedUser !== undefined && user.lastName2 === user.lastName) {
       setLogin(true);
-      let loggedUserName = user.firstName+user.lastName
       console.log(logedUser);
-      setTimeout(() => {setUser({ firstName: "", lastName: "", email: "" });}, "3000")
     }
   };
   const changeHandler = (e) => {
@@ -46,7 +45,7 @@ function App() {
         <LoginForm onLogin={loginHandler} onChanging={changeHandler} color={wrongPassword} />
       ) : (
         <div style={{ textAlign: "center", width: "50%", margin: "auto" }}>
-          <h1>hello {loggedUserName}</h1> <button onClick={logOutHandler}>log out</button>
+          <h1>hello {user.firstName+user.lastName}</h1> <button onClick={logOutHandler}>log out</button>
         </div>
       )}
     </div>

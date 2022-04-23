@@ -1,5 +1,7 @@
 import "./form.css";
+import {useState}from 'react'
 function LoginForm({onLogin,onChanging,color}) {
+  const [showPassword, setShowPassword]=useState(false)
     return (
     <form>
       <h1>Welcome back</h1>
@@ -22,7 +24,7 @@ function LoginForm({onLogin,onChanging,color}) {
       />
       <p>last name:</p>
       <input
-        // type={showPassword? "password":"text"}
+       type={showPassword? "text":"password"}
         name="lastName"
         placeholder="last name"
         className="text-input"
@@ -31,13 +33,13 @@ function LoginForm({onLogin,onChanging,color}) {
       />     
       <p>confirm last name:</p>
       <input
-        // type={showPassword? "password":"text"}
+       type={showPassword? "test":"password"}
         name="lastName2"
         placeholder="last name"
         className="text-input"
         onChange={onChanging}  
         style={!color? {backgroundColor: "#fff"} : {backgroundColor: "red"}}    
-      />     
+      />  {showPassword? <p style={{color:"purple",fontWeight: "bold"}} onClick={()=> setShowPassword(!showPassword)}>hide Password</p> : <p style={{color:"purple",fontWeight: "bold"}} onClick={()=> setShowPassword(!showPassword)}>Show Password</p>  }   
       <button type="submit" onClick={onLogin}>Log in</button>
     </form>
   );
